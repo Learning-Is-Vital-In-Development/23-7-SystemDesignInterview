@@ -1,0 +1,16 @@
+name: PR auto merge
+on:
+  schedule:
+    - cron: '0 0 * * 1' # 매주 월요일 0시(UTC) -> 매주 월요일 오전 9시(KST) 9시간 시차존재
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: automerge
+        uses: "pascalgn/automerge-action@v0.15.7"
+        env:
+          MERGE_LABELS: "" # 모든 PR을 병합합니다.
+          MERGE_METHOD: "squash" # PR을 스쿼시형태로 병합합니다.
+          MERGE_COMMIT_MESSAGE: "pull-request-title" # PR의 제목을 커밋 메세지로 만듭니다.
+          MERGE_DELETE_BRANCH: "true" # 병합이 종료된 브랜치는 삭제합니다.
+          GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
