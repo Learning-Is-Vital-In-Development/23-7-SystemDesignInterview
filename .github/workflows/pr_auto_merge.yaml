@@ -1,7 +1,7 @@
 name: PR auto merge
 on:
   schedule:
-    - cron: '0 0 * * 1' # 매주 월요일 0시(UTC) -> 매주 월요일 오전 9시(KST) 9시간 시차존재
+    - cron: '0 0 * * 2' # 매주 화요일 0시(UTC) -> 매주 화요일 오전 9시(KST) 9시간 시차존재
 jobs:
   automerge:
     runs-on: ubuntu-latest
