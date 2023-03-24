@@ -26,7 +26,7 @@
 | 14장. 유튜브 설계                  | [발표자]() |[발표자료](https://github.com/Learning-Is-Vital-In-Development/23-7-SystemDesignInterview/tree/main/chap14)
 | 15장. 구글 드라이브 설계              | [발표자]() |[발표자료](https://github.com/Learning-Is-Vital-In-Development/23-7-SystemDesignInterview/tree/main/chap15)
 
-## 진행방식``````````
+## 진행방식
 
 1. 매주 2명이 발표자가 되어 발표 자료의 형태로 정리하며 나머지 인원은 해당 내용을 간단히 정리하여 PR을 올립니다.  
    *발표는 첫주에만 1장을 2명이 나누어 준비하며, 이후 매 주 두 캡터씩 각각 1명씩 준비합니다
