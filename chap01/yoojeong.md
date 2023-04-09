@@ -10,7 +10,7 @@
 2. 대상 IP 주소로 HTTP 요청
 3. 웹서버에서 응답 반환
 
-`Monolithic / MSA`
+> `Monolithic / MSA`
 
 ### 데이터베이스, 다중화
 
@@ -44,11 +44,8 @@
 <details>
 <summary>LB HealthCheck 문제</summary>
 
-LB 에서 지정한 HealthCheck Time 보다 서버가 올라오는 시간이 느리면 Unhealthy Statement 로 판단해서 서버가 Graceful Shutdown 되는 현상
-
+LB 에서 지정한 HealthCheck Time 보다 서버가 올라오는 시간이 느리면 Unhealthy Statement 로 판단해서 서버가 Graceful Shutdown 되는 현상이 있었음
 </details>
-
-<br>
 
 > Nginx, SpringCloudGateway, Kong<br> LB 의 라우팅 알고리즘<br> `failover`, `rolling/Blue-Green 배포`, `graceful shutdown`
 
@@ -102,8 +99,8 @@ HA, Failover 를 위한 Source-Replica (Master-Slave, Primary-Secondary)
 - 읽기 전략
   - Look Aside
   - Read Through
+  
 - 쓰기 전략
-
   - Write Back
   - Write Through
   - Write Around
@@ -118,20 +115,20 @@ HA, Failover 를 위한 Source-Replica (Master-Slave, Primary-Secondary)
 - `size?` : 캐시 메모리 크기는 너무 크지도 작지도 않게 적절하게 잡아야 한다.
 - `eviction policy?` : 캐시가 꽉 차버리면 LRU, LFU, FIFO 같은 정책들을 사용해서 사용해야 한다.
 
-캐시 데이터 방출 정책- Window TinyLfu
+> 캐시 데이터 방출 정책- Window TinyLfu<br>
+![image](https://user-images.githubusercontent.com/75432228/230772217-4859aa84-548b-4077-a615-1829472c264a.png)
+<br>[cache 이론 정리](https://jins-dev.tistory.com/entry/Cache-%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%EB%A1%A0%EC%A0%81%EC%9D%B8-%EC%A0%95%EB%A6%AC)
 
-https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb2L6z8%2FbtrLzQxid8U%2FA5pUn6nqWJABGfgfM9yNBk%2Fimg.png
-
-[cache 이론 정리](https://jins-dev.tistory.com/entry/Cache-%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%EB%A1%A0%EC%A0%81%EC%9D%B8-%EC%A0%95%EB%A6%AC)
-
-[DB 변경시 evict - Mybatis cache](https://yunamom.tistory.com/40)
-
+<details>
+<summary>[DB 변경시 evict - Mybatis cache](https://yunamom.tistory.com/40)</summary>
+  
 - 수정/삭제 시 자동으로 cache 에도 반영
 - mybatis는 mapper의 @select, @insert, @update, @delete 어노테이션으로 쿼리를 판단
   - select 일경우 캐시에서 읽음
   - @insert, @update, @delete 의 경우 캐시 갱신
 - but mapper 에 맞는 테이블만 해당되기 때문에 한 mapper 는 하나의 테이블만 조작하도록 설계해야한다.
   (ex. 유저 테이블에서 조인을 통해 게시글 테이블을 수정해도 게시글 매퍼캐시는 수정되지 않음)
+</details>
 
 ### 콘텐츠 전송 네트워크(CDN)
 
@@ -202,7 +199,6 @@ CDN 사용 시, 고려 사항
 - 빌드/테스트/배포 절차 자동화 → 개발 생산성 향상
 
 Tools
-
 - `Sentry`, `Datadog`, `Grafana`, `Prometheus`
 - `Jenkins`, `Travis`, `Github Actions`
 - `ELK`
@@ -212,7 +208,8 @@ Tools
 <font color='lightgreen'> DB 또한 스케일업보다는 스케일 아웃이 좋다</font>
 
 파티셔닝과 샤딩
-https://blog.kakaocdn.net/dn/z270M/btq9E4ZJ2La/JY3SF1AmJKLqMF7Zgsi3Z0/img.png
+
+![image](https://user-images.githubusercontent.com/75432228/230772164-b7c1359f-4764-421d-8a3b-e883921c0549.png)
 
 ### 데이터의 재샤딩
 
@@ -224,19 +221,18 @@ https://blog.kakaocdn.net/dn/z270M/btq9E4ZJ2La/JY3SF1AmJKLqMF7Zgsi3Z0/img.png
 샤딩의 방법
 
 - hash sharding
-  https://hudi.blog/static/95ab4c747775919f2e7a9bc05a5336a6/9d567/hash_sharding.png
+  ![image](https://user-images.githubusercontent.com/75432228/230772129-07179486-89a3-401f-95a9-79bdcbfe6999.png)
 
   - [안정해시(hash ring) 을 사용하는 방법](https://binux.tistory.com/119)
 
 - range sharding
-  https://hudi.blog/static/fb5bb40c03dc14fc674d1cc7ff0426c5/9d567/range_sharding.png
-
-[DB분산처리를 위한 sharding](https://techblog.woowahan.com/2687/)
-
+  ![image](https://user-images.githubusercontent.com/75432228/230772134-832fb39e-1390-4643-b95b-92361d9e1174.png)
+  
+[DB분산처리를 위한 sharding](https://techblog.woowahan.com/2687/)<br>
 [데이터베이스 샤딩이란 무엇인가요?](https://aws.amazon.com/ko/what-is/database-sharding/)
 
 ---
 
 마무리
 
-https://github.com/Meet-Coder-Study/book-system-design-interview/raw/master/01%EC%9E%A5/images/kbb_architecture.png
+![image](https://user-images.githubusercontent.com/75432228/230772110-4b569fa5-93bb-4887-b629-db22743442e4.png)
