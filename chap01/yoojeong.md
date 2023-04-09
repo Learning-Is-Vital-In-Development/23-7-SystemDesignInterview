@@ -46,8 +46,36 @@
 
 LB 에서 지정한 HealthCheck Time 보다 서버가 올라오는 시간이 느리면 Unhealthy Statement 로 판단해서 서버가 Graceful Shutdown 되는 현상이 있었음
 </details>
+<details>
+<summary>LB 알고리즘</summary>
+  
+`라운드 로빈`
+  
+- 서버에 들어온 요청을 순서대로 돌아가며 배정하는 방식
+- 클라이언트의 요청을 순서대로 분배하기 때문에 여러 대의 서버가 동일한 스펙을 갖고 있고, 서버와의 연결(세션)이 오래 지속되지 않는 경우에 활용하기 적합함.
+  
+`가중 라운드 로빈`
+  
+- 각각의 서버마다 가중치를 매기고 가중치가 높은 서버에 클라이언트 요청을 우선적으로 배분하는 방식
+- 주로 서버의 트래픽 처리 능력이 상이한 경우 사용되는 부하 분산 방식이다. 예를 들어 A라는 서버가 5라는 가중치를 갖고 B라는 서버가 2라는 가중치를 갖는다면, 로드밸런서는 라운드로빈 방식으로 A 서버에 5개 B 서버에 2개의 요청을 전달함.
 
-> Nginx, SpringCloudGateway, Kong<br> LB 의 라우팅 알고리즘<br> `failover`, `rolling/Blue-Green 배포`, `graceful shutdown`
+`IP hash`
+  
+- 클라이언트의 IP 주소를 특정 서버로 매핑하여 요청을 처리하는 방식
+- 사용자의 IP를 Hashing해 로드를 분배하기 때문에 사용자가 항상 동일한 서버로 연결되는 것을 보장함.
+
+`Least Connection`
+  
+- 요청이 들어온 시점에 가장 적은 연결상태를 보이는 서버에 우선적으로 트래픽을 배분하는 방식
+- 자주 세션이 길어지거나, 서버에 분배된 트래픽들이 일정하지 않은 경우에 적합함.
+
+`Least Response time`
+  
+- 서버의 현재 연결 상태와 응답시간(Response Time, 서버에 요청을 보내고 최초 응답을 받을 때까지 소요되는 시간)을 모두 고려하여 트래픽을 배분하는 방식
+- 가장 적은 연결 상태와 가장 짧은 응답시간을 보이는 서버에 우선적으로 로드를 배분함.
+</details>
+  
+> Nginx, SpringCloudGateway, Kong<br> `failover`, `rolling/Blue-Green 배포`, `graceful shutdown`
 
 ### 데이터베이스 다중화
 
