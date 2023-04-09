@@ -2,7 +2,13 @@
 
 ### Part 1
 
-
+<ul>
+    <li><a href="https://github.com/this-is-spear/system-design-interview/wiki/%EB%8B%A8%EC%9D%BC-%EC%84%9C%EB%B2%84">단일 서버</a></li>
+    <li><a href="https://github.com/this-is-spear/system-design-interview/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4">데이터베이스</a></li>
+    <li><a href="https://github.com/this-is-spear/system-design-interview/wiki/%EC%88%98%EC%A7%81%EC%A0%81-%EA%B7%9C%EB%AA%A8-%ED%99%95%EC%9E%A5-vs-%EC%88%98%ED%8F%89%EC%A0%81-%EA%B7%9C%EB%AA%A8-%ED%99%95%EC%9E%90">수직적 규모 확장 vs 수평적 규모 확장</a></li>
+    <li><a href="https://github.com/this-is-spear/system-design-interview/wiki/%EC%BA%90%EC%8B%9C">캐시</a></li>
+    <li><a href="https://github.com/this-is-spear/system-design-interview/wiki/%EB%AC%B4%EC%83%81%ED%83%9C-%EC%9B%B9-%EA%B3%84%EC%B8%B5">무상태 웹 계층</a></li>
+</ul>
 
 ### Part 2
 
