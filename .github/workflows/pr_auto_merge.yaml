@@ -11,5 +11,5 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
           MERGE_LABELS: "" # 모든 PR을 병합합니다.
-          MERGE_METHOD: "rebase" # PR을 스쿼시형태로 병합합니다.
+          MERGE_METHOD: "squash" # PR을 스쿼시형태로 병합합니다.
 
