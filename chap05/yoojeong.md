@@ -76,9 +76,9 @@ serverIndex = hash(key) % N
 
 <img src = "https://user-images.githubusercontent.com/75432228/233836699-20def45a-c6b6-48f7-b4c9-da28eb20c91c.png" width="70%">
 
-
-아마존 다이나모 데이터베이스 파티셔닝
-아파치 카산드라 클러스터에서의 데이터 파티셔닝
-디스코드 채팅 어플리케이션
+[AWS DynamoDB 파티셔닝](https://hello-world.kr/19)
+[Dynamo: amazon's highly available key-value store](https://dl.acm.org/doi/10.1145/1294261.1294281)
+[아파치 카산드라 클러스터에서의 데이터 파티셔닝](https://woooongs.tistory.com/89)
+[디스코드 채팅 어플리케이션](https://discord.com/blog/how-discord-scaled-elixir-to-5-000-000-concurrent-users)
 아카마이 CDN
 매그레프 네트워크 부하 분산기
