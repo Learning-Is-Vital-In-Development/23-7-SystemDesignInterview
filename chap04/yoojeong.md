@@ -119,7 +119,6 @@
 |보호 대상| Server의 과부하|Client를 위한 응답 속도|
 |문제 원인 | Client의 과도한 요청|Server의 부분적 장애|
 | 의의 | 이용자 폭증 대응<br> 특정 이용자의 악의적 이용 또는 자원 독점 차단<br> Dos 공격 방지 등|장애 서비스에 접속을 차단함으로써 에러 전파 방지 및 즉각적인 대체 응답 수행|
-| 의의 | 이용자 폭증 대응<br> 특정 이용자의 악의적 이용 또는 자원 독점 차단<br> Dos 공격 방지 등|장애 서비스에 접속을 차단함으로써 에러 전파 방지 및 즉각적인 대체 응답 수행|
 | |![image](https://user-images.githubusercontent.com/75432228/233834918-6e012c88-0778-4063-9c31-37ef27b3b195.png) | ![image](https://user-images.githubusercontent.com/75432228/233834913-95922ce2-295e-456f-943e-e96dbd0df31b.png)|
 
 
