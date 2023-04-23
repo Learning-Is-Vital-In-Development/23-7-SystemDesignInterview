@@ -1,4 +1,7 @@
-## 4장: 처리율 제한 장치의 설계ㅐ
+## 4장: 처리율 제한 장치의 설계
+
+![image](https://user-images.githubusercontent.com/75432228/233833141-95873b47-6321-4f2b-b5ef-7f9d7951f96f.png)
+
 
 처리율 제한 장치 (rate limiter) : 설정된 threshold 까지만 클라이언트의 요청을 허용하는 장치
 
@@ -14,6 +17,8 @@
 - 서비스 가용성 확보
   - bot 에서 오는 트래픽 등을 걸러내 과부하 방지
   - 레인보우 테이블 등 brute force attack 으로부터 방어
+- Rate에 대해 과금을 부과하는 Business Model로 활용
+  - Medium, 슬랙, 아웃스탠딩...
 
 > crawler
 
@@ -52,6 +57,11 @@
 - 데이터베이스는 디스크 접근 때문에 느리니까, 메모리상에서 동작하는 캐시가 바람직하다.
 
 #### 개략적인 아키텍쳐
+![image](https://user-images.githubusercontent.com/75432228/233833995-e22f07e8-861d-46a7-8f31-a59f6f36d07f.png)
+
+레디스는 처리율 제한 장치를 구현할 때 자주 사용되는 메모리 기반 저장소로, INCR과 EXPIRE의 두가지 명령어를 지원
+- INCR: 메모리에 저장된 카운터의 값을 1만큼 증가시킨다.
+- EXPIRE: 카운터에 타임아웃 값을 설정한다. 설정된 시간이 지나면 카운터는 자동으로 삭제된다.
 
 ### 3. 상세 설계
 
@@ -60,6 +70,8 @@
 보통 config 파일 형태로 디스크에 저장되고, 작업 프로세스(worker)가 수시로 디스크에서 규칙을 읽어 캐시에 저장한다.
 
 #### 처리율 한도 초과 트래픽의 처리
+
+> HTTP 응답 헤더<br>- X-Ratelimit-Remaining: 윈도 내에 남은 처리 가능 요청 수<br>- X-Ratelimit-Limit: 매 윈도마다 클라이언트가 전송할 수 있는 요청 수<br>- X-Ratelimit-Retry-After: 한도 제한에 걸리지 않으려면 몇 초 뒤에 다시 요청을 보내야 하는지
 
 429 반환 외에도 Queue에 담아뒀다가 나중에 처리할 수도 있다.
 
@@ -86,3 +98,28 @@
 - Application 계층 처리율 제한 외에 IPtables 를 이용한 네트워크 계층 처리율 제한
 - 처리율 제한 회피
 - 클라이언트측 처리율 제한 - [npm client-rate-limiter](https://www.npmjs.com/package/client-rate-limiter)
+
+
+#### Ref.
+
+[Designing an API Rate Limiter](https://goalgorithm.wordpress.com/2019/06/08/designing-an-api-rate-limiter/) Java 예제<br>
+[Designing a Distributed Rate Limiter — Introduction](https://medium.com/wineofbits/designing-a-distributed-rate-limiter-introduction-731afd345a66)<br>
+[Resilience4j RateLimiter](https://resilience4j.readme.io/docs/ratelimiter)<br>
+[Istio rate limit(envoy)](https://istio.io/latest/docs/tasks/policy-enforcement/rate-limit/)<br>
+[envoy 도 레디스 사용함](https://github.com/envoyproxy/ratelimit)<br>
+[배민 처리율 제한 알고리즘](https://www.youtube.com/watch?v=uWcn7omddxs&t=276s&ab_channel=%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC)
+
+
+#### Appendix.
+
+> Rate Limiter와 Circuit Breaker의 차이
+
+||Rate Limiter| Circuit Breaker|
+|:--:| :--:| :--:|
+|보호 대상| Server의 과부하|Client를 위한 응답 속도|
+|문제 원인 | Client의 과도한 요청|Server의 부분적 장애|
+| 의의 | 이용자 폭증 대응<br> 특정 이용자의 악의적 이용 또는 자원 독점 차단<br> Dos 공격 방지 등|장애 서비스에 접속을 차단함으로써 에러 전파 방지 및 즉각적인 대체 응답 수행|
+| 의의 | 이용자 폭증 대응<br> 특정 이용자의 악의적 이용 또는 자원 독점 차단<br> Dos 공격 방지 등|장애 서비스에 접속을 차단함으로써 에러 전파 방지 및 즉각적인 대체 응답 수행|
+| |![image](https://user-images.githubusercontent.com/75432228/233834918-6e012c88-0778-4063-9c31-37ef27b3b195.png) | ![image](https://user-images.githubusercontent.com/75432228/233834913-95922ce2-295e-456f-943e-e96dbd0df31b.png)|
+
+
