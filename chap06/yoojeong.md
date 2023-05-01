@@ -113,6 +113,8 @@ W+R > N : 강한 일관성이 보장됨, 최소 하나의 서버는 최신 데�
 <img width="551" alt="image" src="https://user-images.githubusercontent.com/75432228/235423124-8516b63a-11c6-416f-a585-037df717fbc2.png">
 
   - 벡터 시계의 단점 : 충돌 감지 및 해소로직이 클라이언트가 수행해야 한다, [서버: 버전] 순서쌍의 개수가 빠르게 증가한다 (길이에 어떤 임계치를 설정하고, 오래된 순서쌍을 벡터 시계에서 제거해야함)
+  
+> [아마존의 문서에 따르면 실제로 그런 문제가 벌어진적은 없다고함](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
 
 
 
