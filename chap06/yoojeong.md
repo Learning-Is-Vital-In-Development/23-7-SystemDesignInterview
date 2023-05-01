@@ -136,7 +136,8 @@ W+R > N : 강한 일관성이 보장됨, 최소 하나의 서버는 최신 데�
 | 장점 | 구현이 쉽다                                                                                                             | 각 노드들은 O(1)만큼의 과부하를 받고 각 노드들은 O(log(N))의 Latency를 보장할 수 있다                                                                                                                                                                        | 약 Log(N)의 시간안에 (낮은 Latency) 거의 대부분의 노드들에게 데이터가 전송되며 (1 - 1 / (N ^ (cb - 2)) 노드들은 약 Log(N)의 Load만을 받게 된다. 이 모든 특성을 UDP로만 이룰 수 있기때문에 더욱 효율적 |
 | 단점 | Central노드가 Fail할 시 모든 노드들이 데이터를 받지 못하며 다른 모든 노드와 통신을 하기 때문에 O(N)의 Load를 받게 된다. | 한 노드에 장애가 생기면 하위 노드들이 데이터를 받지 못한다.<br> 이를 극복하기 위해 RTMP(Reliable Multicast Transport Protocol)에서는 데이터를 성공적으로 받았을때 Ack보내는 방법을 사용하지만, O(N)의 Ack Load를 Root노드에 부과하기 때문에 강점이 사라진다. | 각 노드가 메시지를 전달하는 주기를 적절히 설정해야 한다.                                                                                                                                              |
 
-> [기존에는 분산환경 알고리즘으로 paxos 나 raft 주로 사용한듯](https://gruuuuu.github.io/integration/paxos-raft/)
+> [기존에는 분산환경 알고리즘으로 paxos 나 raft(주키퍼에서 사용) 주로 사용한듯](https://gruuuuu.github.io/integration/paxos-raft/)
+> [Consensus Algorithm](https://minkukjo.github.io/cs/2020/04/22/Infra-20/)
 
 `일시적 장애 처리`
 
