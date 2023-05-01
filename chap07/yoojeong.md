@@ -3,7 +3,7 @@
 유일 ID로 관계형 데이터베이스의 auto_increment 를 쓸수는 없을까?
 
 - 분산 환경에서는 데이터베이스 서버 한대로 감당하기 어려움
-- 여러 데이터베이스 서버를 쓰는 경우 지연 시간을 낮추기 힘듦 - 쓰기 동기화
+- 여러 데이터베이스 서버를 쓰는 경우 지연 시간을 낮추기 힘듦 (쓰기 동기화)
 
 ### 문제 이해 및 설계 범위 확정
 
@@ -17,7 +17,11 @@
 
 ### 개략적인 설계안 제시 및 동의 구하기
 
+---
+
 #### 다중 마스터 복제
+
+<img width="367" alt="image" src="https://user-images.githubusercontent.com/75432228/235428405-38019125-c933-4e32-ac11-a1762007bb2d.png">
 
 auto-increment 를 사용하나, 1씩 증가가 아닌 k(서버의 수)씩 증가
 
@@ -31,8 +35,6 @@ Q. 이 내용은 이전 안정 해시때도 서버가 늘어나면 바로 문제
 
 #### UUID(Universally Unique Identifier)
 
-유일성이 보장되는 ID를 만드는 방법
-
 컴퓨터 시스템에 저장되는 정보를 유일하게 식별하기 위한 128 bit의 식별키, 충돌 가능성이 낮음
 
 | 장점                                                                    | 단점                                                                                                                             |
@@ -42,6 +44,9 @@ Q. 이 내용은 이전 안정 해시때도 서버가 늘어나면 바로 문제
 ---
 
 #### 티켓 서버(ticket server)
+
+<img width="760" alt="image" src="https://user-images.githubusercontent.com/75432228/235428435-b22b9664-ad43-4c94-8604-e8bde40c515a.png">
+
 
 - 플리커(Flickr)는 분산 기본 키를 만들어 내기 위해 이 기술을 이용
 - AUTO INCREMENT 기능을 갖춘 데이터베이스 서버(티켓 서버)를 중앙 집중형으로 하나만 사용
@@ -53,6 +58,9 @@ Q. 이 내용은 이전 안정 해시때도 서버가 늘어나면 바로 문제
 ---
 
 #### 트위터 스노우 플레이크(twitter snowflake)
+
+<img width="728" alt="image" src="https://user-images.githubusercontent.com/75432228/235428454-95ae7e3e-0bae-47c2-a214-eff1650ad0c4.png">
+
 
 `S:T41:DC5:SI5:SEQ:12`
 
@@ -71,7 +79,10 @@ Q. 이 내용은 이전 안정 해시때도 서버가 늘어나면 바로 문제
 - 데이터 센터 ID와 서버 ID는 시스템이 시작할때 결정되며 일반적으로 시스템 운영중에 바뀌지 않음
 - 타임스탬프나 일련번호는 ID 생성기가 돌고 있는 중에 만들어짐
 
-`타임스탬프
+`타임스탬프`
+
+<img width="723" alt="image" src="https://user-images.githubusercontent.com/75432228/235428479-e7ce5f67-6a7e-452f-9936-bd95d3c496d0.png">
+
 
 - 가장 큰 41비트를 차지하고 있음
 - 시간에 따라 점점 큰 값을 갖게 되므로 ID는 시간 순으로 정렬 가능
