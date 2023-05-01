@@ -104,9 +104,14 @@ W+R > N : 강한 일관성이 보장됨, 최소 하나의 서버는 최신 데�
 
 두 대 이상의 서버가 특정 서버의 장애를 보고하면 장애로 간주
 
+
+
+
+
+
 | 종류 | Centralized                                                                                                             | Spanning Tree                                                                                                                                                                                                                                                | Gossip                                                                                                                                                                                                |
 | :--: | :---------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| | ![image](https://user-images.githubusercontent.com/75432228/235421688-d31651f0-0660-4a5a-b12b-ac9056e3feb4.png)|![image](https://user-images.githubusercontent.com/75432228/235421706-103a3fe9-27fe-4ed5-b299-11e9aa245b22.png)|![image](https://user-images.githubusercontent.com/75432228/235421727-f9c9ba0d-6b93-45e5-a2a5-e924c7621e5c.png)|
+| | <img width="300" alt="image" src="https://user-images.githubusercontent.com/75432228/235421688-d31651f0-0660-4a5a-b12b-ac9056e3feb4.png">|<img width="300" alt="image" src="https://user-images.githubusercontent.com/75432228/235421706-103a3fe9-27fe-4ed5-b299-11e9aa245b22.png">|<img width="300" alt="image" src="https://user-images.githubusercontent.com/75432228/235421727-f9c9ba0d-6b93-45e5-a2a5-e924c7621e5c.png">|
 | 구현 | 하나의 중앙 컨트롤러(Central Controller)가 모든 Multicast 그룹의 멤버들을 관리하고 모든 메시지를 중앙에서 분배          | Spanning Tree 프로토콜을 사용하여 Multicast 그룹에 속한 모든 노드들을 트리 구조로 연결                                                                                                                                                                       | 각 노드가 주기적으로 메시지를 무작위로 선택한 다른 노드들에게 전파                                                                                                                                    |
 | 장점 | 구현이 쉽다                                                                                                             | 각 노드들은 O(1)만큼의 과부하를 받고 각 노드들은 O(log(N))의 Latency를 보장할 수 있다                                                                                                                                                                        | 약 Log(N)의 시간안에 (낮은 Latency) 거의 대부분의 노드들에게 데이터가 전송되며 (1 - 1 / (N ^ (cb - 2)) 노드들은 약 Log(N)의 Load만을 받게 된다. 이 모든 특성을 UDP로만 이룰 수 있기때문에 더욱 효율적 |
 | 단점 | Central노드가 Fail할 시 모든 노드들이 데이터를 받지 못하며 다른 모든 노드와 통신을 하기 때문에 O(N)의 Load를 받게 된다. | 한 노드에 장애가 생기면 하위 노드들이 데이터를 받지 못한다.<br> 이를 극복하기 위해 RTMP(Reliable Multicast Transport Protocol)에서는 데이터를 성공적으로 받았을때 Ack보내는 방법을 사용하지만, O(N)의 Ack Load를 Root노드에 부과하기 때문에 강점이 사라진다. | 각 노드가 메시지를 전달하는 주기를 적절히 설정해야 한다.                                                                                                                                              |
@@ -134,14 +139,14 @@ W+R > N : 강한 일관성이 보장됨, 최소 하나의 서버는 최신 데�
 
 #### 시스템 아키텍쳐
 
-<img width="668" alt="image" src="https://user-images.githubusercontent.com/75432228/235415270-83908a80-91ab-4438-91e2-1d139cb274f0.png">
+<img width="60%" alt="image" src="https://user-images.githubusercontent.com/75432228/235415270-83908a80-91ab-4438-91e2-1d139cb274f0.png">
 
-<img width="866" alt="image" src="https://user-images.githubusercontent.com/75432228/235415318-57abd457-161e-4126-a108-7dc754c9642e.png">
+<img width="60%" alt="image" src="https://user-images.githubusercontent.com/75432228/235415318-57abd457-161e-4126-a108-7dc754c9642e.png">
 
 
 #### 쓰기 경로(write path)
 
-<img width="712" alt="image" src="https://user-images.githubusercontent.com/75432228/235418680-c212fcff-c5ee-47f6-b0c2-93d822ec46eb.png">
+<img width="60%" alt="image" src="https://user-images.githubusercontent.com/75432228/235418680-c212fcff-c5ee-47f6-b0c2-93d822ec46eb.png">
 
 1. 제일 먼저 쓰기 요청이 **커밋 로그 파일(디스크)**에 기록된다.
 2. 데이터가 **메모리 캐시**에 기록된다.
@@ -155,14 +160,14 @@ Sorted-String Table의 약어로, 키-값의 순서쌍을 정렬된 리스트 �
 
 `데이터가 메모리에 있을 경우`
 
-<img width="719" alt="image" src="https://user-images.githubusercontent.com/75432228/235418857-d21d7bb8-5df6-49ab-a7a1-838d96e6da1d.png">
+<img width="60%" alt="image" src="https://user-images.githubusercontent.com/75432228/235418857-d21d7bb8-5df6-49ab-a7a1-838d96e6da1d.png">
 
 1. 먼저 데이터가 메모리 캐시에 있는지 검사
 2. 해당 데이터를 바로 클라이언트에게 반환
 
 `데이터가 메모리에 없을 경우`
 
-<img width="678" alt="image" src="https://user-images.githubusercontent.com/75432228/235418939-0f028d85-a93b-4506-aba7-31dd7f112b1f.png">
+<img width="60%" alt="image" src="https://user-images.githubusercontent.com/75432228/235418939-0f028d85-a93b-4506-aba7-31dd7f112b1f.png">
 
 1. 데이터가 메모리에 있는지 검사        
 2. 데이터가 메모리에 없으므로 블룸 필터를 검사
