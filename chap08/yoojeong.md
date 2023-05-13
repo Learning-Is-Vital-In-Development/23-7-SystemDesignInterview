@@ -78,3 +78,6 @@
 | ID초부터 단축 URL을계산하는 방식이 아니라서 다음에 쓸수록 있는 URL을 알아내는 것이 불가능 | ID가 1씩 증가하는 값이라고 가정하면 다음에 쓸 수 있는 단축 URL이 무엇인지 쉽게 알아낼 수 있어서 보안성 문제가 될 소지가 있음 |
 
 ### 마무리
+
+![image](https://github.com/rachel5004/23-7-SystemDesignInterview/assets/75432228/ed90c644-f512-4ae4-bfb6-b7b95867d4e0)
+
