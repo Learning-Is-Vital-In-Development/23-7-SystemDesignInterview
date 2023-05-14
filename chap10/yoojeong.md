@@ -109,10 +109,15 @@ iOS와 안드로이드 앱의 경우, 알림 전송 API는 시크릿키를 사�
 
 ### 마무리
 
-
-
 - `안정성` : 메시지 전송 실패율을 낮추기 위해 안정적인 **재시도 메커니즘**을 도입했다.
 - `보안` : 인증된 클라이언트만 알림을 보낼 수 있도록, **시크릿 키 매커니즘**을 이용하였다.
 - `이벤트 추적 및 모니터링` : 알림 전송의 각 단계마다 이벤트를 추적하고 **모니터링**할 수 있는 시스템을 통합하였다.
 - `사용자 설정` : 사용자가 **알림 수신 설정을 조정**할 수 있도록 하였다.
 - `전송률 제한` : 사용자에게 **알림을 보내는 빈도를 제한**할 수 있도록 하였다.
+
+---
+
+[You Cannot Have Exactly-Once Delivery](https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/)
+[Kafka exactly-once](https://www.joinc.co.kr/w/man/12/Kafka/exactlyonce)
+[Exactly-Once Semantics Are Possible: Here’s How Kafka Does It](https://www.confluent.io/blog/exactly-once-semantics-are-possible-heres-how-apache-kafka-does-it/)
+[Improved Robustness and Usability of Exactly-Once Semantics in Apache Kafka](https://www.confluent.io/blog/simplified-robust-exactly-one-semantics-in-kafka-2-5/)
