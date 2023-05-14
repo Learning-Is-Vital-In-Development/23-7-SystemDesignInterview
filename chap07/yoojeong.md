@@ -1,4 +1,4 @@
-## 7장: 처리율 제한 장치의 설계
+## 7장: 유일 ID 생성기의 설계
 
 유일 ID로 관계형 데이터베이스의 auto_increment 를 쓸수는 없을까?
 
@@ -47,7 +47,6 @@ Q. 이 내용은 이전 안정 해시때도 서버가 늘어나면 바로 문제
 
 <img width="760" alt="image" src="https://user-images.githubusercontent.com/75432228/235428435-b22b9664-ad43-4c94-8604-e8bde40c515a.png">
 
-
 - 플리커(Flickr)는 분산 기본 키를 만들어 내기 위해 이 기술을 이용
 - AUTO INCREMENT 기능을 갖춘 데이터베이스 서버(티켓 서버)를 중앙 집중형으로 하나만 사용
 
@@ -60,7 +59,6 @@ Q. 이 내용은 이전 안정 해시때도 서버가 늘어나면 바로 문제
 #### 트위터 스노우 플레이크(twitter snowflake)
 
 <img width="728" alt="image" src="https://user-images.githubusercontent.com/75432228/235428454-95ae7e3e-0bae-47c2-a214-eff1650ad0c4.png">
-
 
 `S:T41:DC5:SI5:SEQ:12`
 
@@ -83,7 +81,6 @@ Q. 이 내용은 이전 안정 해시때도 서버가 늘어나면 바로 문제
 `타임스탬프`
 
 <img width="723" alt="image" src="https://user-images.githubusercontent.com/75432228/235428479-e7ce5f67-6a7e-452f-9936-bd95d3c496d0.png">
-
 
 - 가장 큰 41비트를 차지하고 있음
 - 시간에 따라 점점 큰 값을 갖게 되므로 ID는 시간 순으로 정렬 가능
@@ -133,3 +130,9 @@ https://guslabview.tistory.com/452
 `고가용성(HA)`
 
 - ID 생성기는 필수불가결(mission critical) 컴포넌트이므로 아주 높은 가용성을 제공해야 한다
+
+---
+
+[UUID vs ULID](https://velog.io/@injoon2019/UUID-vs-ULID)
+[The best UUID type for a database Primary Key](https://vladmihalcea.com/uuid-database-primary-key/)
+[UUID for Primary Key](https://devs0n.tistory.com/39)
