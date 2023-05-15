@@ -118,6 +118,9 @@ iOS와 안드로이드 앱의 경우, 알림 전송 API는 시크릿키를 사�
 ---
 
 [You Cannot Have Exactly-Once Delivery](https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/)
+
 [Kafka exactly-once](https://www.joinc.co.kr/w/man/12/Kafka/exactlyonce)
+
 [Exactly-Once Semantics Are Possible: Here’s How Kafka Does It](https://www.confluent.io/blog/exactly-once-semantics-are-possible-heres-how-apache-kafka-does-it/)
+
 [Improved Robustness and Usability of Exactly-Once Semantics in Apache Kafka](https://www.confluent.io/blog/simplified-robust-exactly-one-semantics-in-kafka-2-5/)
