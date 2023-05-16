@@ -1,4 +1,5 @@
-## 7장: 처리율 제한 장치의 설계
+## 7장: 유일 ID 생성기의 설계
+
 
 유일 ID로 관계형 데이터베이스의 auto_increment 를 쓸수는 없을까?
 
@@ -60,7 +61,6 @@ Q. 이 내용은 이전 안정 해시때도 서버가 늘어나면 바로 문제
 #### 트위터 스노우 플레이크(twitter snowflake)
 
 <img width="728" alt="image" src="https://user-images.githubusercontent.com/75432228/235428454-95ae7e3e-0bae-47c2-a214-eff1650ad0c4.png">
-
 
 `S:T41:DC5:SI5:SEQ:12`
 
@@ -133,3 +133,8 @@ https://guslabview.tistory.com/452
 `고가용성(HA)`
 
 - ID 생성기는 필수불가결(mission critical) 컴포넌트이므로 아주 높은 가용성을 제공해야 한다
+
+
+[UUID vs ULID](https://velog.io/@injoon2019/UUID-vs-ULID)
+[The best UUID type for a database Primary Key](https://vladmihalcea.com/uuid-database-primary-key/)
+[UUID for Primary Key](https://devs0n.tistory.com/39)
